@@ -104,14 +104,14 @@ void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
 {
-    Console.WriteLine("Enter product name to delete: ");
+    Console.WriteLine("Enter product to delete: ");
     int productNumber = int.Parse(Console.ReadLine()) - 1;
 
     if (productNumber >= 0 && productNumber < products.Count)
     {
         Product productDelete = products[productNumber];
         products.Remove(productDelete);
-        Console.WriteLine($"Product '{productDelete.Name}' deleted successfully.");
+        Console.WriteLine($"'{productDelete.Name}' deleted.");
     }
 }
 
@@ -123,7 +123,7 @@ void AddProduct(List<Product> products, List<ProductType> productTypes)
     Console.WriteLine("Enter product price: ");
     decimal price = decimal.Parse(Console.ReadLine());
 
-    Console.WriteLine("Enter product type ID (1 for Poetry, 2 for Brass): ");
+    Console.WriteLine("Enter product type ID: ");
     int productTypeId = int.Parse(Console.ReadLine());
 
     products.Add(new Product { Name = name, Price = price, ProductTypeId = productTypeId });
@@ -132,7 +132,7 @@ void AddProduct(List<Product> products, List<ProductType> productTypes)
 
 void UpdateProduct(List<Product> products, List<ProductType> productTypes)
 {
-    Console.WriteLine("Entere product number to update: ");
+    Console.WriteLine("Entere product to update: ");
     int productNumber = int.Parse(Console.ReadLine()) - 1;
 
     if (productNumber >= 0 && productNumber < products.Count)
@@ -140,21 +140,21 @@ void UpdateProduct(List<Product> products, List<ProductType> productTypes)
         Product product = products[productNumber];
 
         Console.WriteLine($"Current Name: {product.Name}");
-        Console.WriteLine("Enter new name (or press enter to keep the current one): ");
+        Console.WriteLine("Enter new name: ");
         string newName = Console.ReadLine().Trim();
         if (!string.IsNullOrEmpty(newName)) product.Name = newName;
 
         Console.WriteLine($"Current Price: {product.Price}");
-        Console.WriteLine("Enter new price (or press enter to keep the current price): ");
+        Console.WriteLine("Enter new price: ");
         string newPrice = Console.ReadLine();
         if (!string.IsNullOrEmpty(newPrice)) product.Price = decimal.Parse(newPrice);
 
         Console.WriteLine($"Current Type: {productTypes.First(pt => pt.Id == product.ProductTypeId).Title}");
-        Console.WriteLine("Enter new type ID (1 for Poetry, 2 for Brass, or press enter to keep the current one): ");
+        Console.WriteLine("Enter new type ID: ");
         string newType = Console.ReadLine();
         if (!string.IsNullOrEmpty(newType)) product.ProductTypeId = int.Parse(newType);
 
-        Console.WriteLine($"Product '{product.Name}' updated.");
+        Console.WriteLine($"'{product.Name}' updated.");
 
     }
 }
